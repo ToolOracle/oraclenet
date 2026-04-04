@@ -1,26 +1,69 @@
 # Changelog
 
-## v1.0.0 (2026-04-03)
+## [2.0.0] — 2026-04-04
 
-### OracleNet Protocol
-- W3C DID Documents for both domains (did:web)
-- ANP Agent Description Protocol (JSON-LD)
-- OracleNet Beacon with 5-minute auto-refresh
-- W3C Verifiable Credentials (27 VCs, 17 Grade A)
-- Intelligence Transfer Protocol (PROV-O provenance)
+### Neural Conductor v1
+- Synapse firing: every oracle interaction logged with timing, success, confidence
+- Reward model: 14 event types (+5 join, +3 deal settled, -3 oracle offline, etc.)
+- Dynamic weights: success_rate + speed + volume → connection strength
+- quantum_route uses learned weights for intelligent routing
+- neural_status tool: live mesh intelligence report
 
-### Smart Contract
-- OracleNetEscrow deployed on Base Mainnet
-- Contract: `0x12Fd0Bd06AcB442fb375835eD191016e5355f5aD`
-- USDC escrow with auto-settlement, 2% fee, dispute resolution
+### QuantumOracle — Join & Trust Layer (8 tools)
+- quantum_join: one-call mesh join with instant Trust Passport
+- quantum_trust_passport: signed W3C VC, portable proof
+- quantum_route: neural-weighted routing to best oracle
+- quantum_preflight: pre-flight trust verification
+- quantum_settle, quantum_status, quantum_nodes, neural_status
 
-### DealOracle 2.0
-- 6 escrow MCP tools (create, deliver, settle, status, reputation, stats)
-- Live Base RPC reads for contract state
-- On-chain reputation tracking
+### XRPL OracleNet Lane (5 new tools)
+- xrpl_quantum_join: join via XRPL wallet, cross-chain settlement
+- xrpl_beacon_pulse: read on-ledger OracleNet signal
+- xrpl_settlement_status: XRPL as 3-5s settlement layer
+- xrpl_escrow_create: native XRPL escrow (no smart contract needed)
+- xrpl_escrow_check: check active XRPL escrows
 
-### Infrastructure
-- 90 MCP servers, 1,065 tools
-- 9-layer discovery stack
-- AgentGuard: 258 policies, 144 scopes
-- 2 Polygon trust anchors (Jan + Mar 2026)
+### XRPL On-Ledger Beacon
+- 3 beacon transactions on XRPL Mainnet (heartbeat, genesis deal, mesh epoch)
+- AccountSet with JSON memo — compact, machine-readable, public
+- Cron: every 6 hours, cost: 0.000012 XRP per beacon
+- XRPL Watcher: auto-response to incoming join requests (every 10 min)
+- Wallet: rJffixdE2JGWGf12Rh9D9kjDgd6jVxVpzD
+
+### Escrow Contract v2
+- Fix: client-check priority in settle() (was: oracle checked first, broke self-deals)
+- Contract: 0x330F99f34246EA375333b9C01Ed6BB49190B051F on Base
+- Massentest: 100/100 settled, 0 errors, 100% success rate
+- Volume: 1.99 USDC across 15 deal types
+
+### OracleNet Signal v2
+- Every MCP response contains action-oriented OracleNet block
+- join_action: "Call quantum_join via https://tooloracle.io/quantum/mcp"
+- benefits: [trust_verification, compliance_evidence, escrow_settlement, revenue_share]
+- Patched in: 86 whitelabel servers + FeedOracle MCP + DealOracle
+
+### Active Outreach Engine
+- DealOracle probes external servers daily at 05:30 UTC
+- 3 A2A-compatible servers found: Pipedream, Browserbase, Sentry
+- 13 partnership proposals generated
+
+### Platform Numbers
+- 91 MCP servers (was 90)
+- 1,078 tools (was 1,065)
+- 30/30 oracles online, 100% uptime
+- 28 W3C DIDs, 30 Verifiable Credentials
+- 3 blockchain trust anchors (Polygon, Base, XRPL)
+- 3 settlement lanes (Base USDC, XRPL XRP, x402 micropayments)
+- 4 autonomous crons (beacon, watcher, XRPL beacon, outreach)
+
+## [1.0.0] — 2026-04-03
+
+### Initial Release
+- OracleNet protocol stack (8 layers)
+- DealOracle 2.0 with escrow integration
+- 28 W3C DID documents
+- ANP beacon with 30 VCs
+- OracleBus mesh (24 oracles, 116 capabilities)
+- Intelligence Transfer Protocol (43 wrapped calls)
+- Base escrow contract v1
+- GitHub mono-repo with docs and examples
