@@ -189,8 +189,10 @@ contract OracleNetEscrow is ReentrancyGuard {
             "Not authorized"
         );
 
-        // Auto-verify: if hashes match, anyone can settle
-        if (msg.sender == d.oracle) {
+        // Client and arbiter can always settle (client confirms delivery)
+        // Oracle can only self-settle if proof hash matches deliverable hash
+        if (msg.sender != d.client && msg.sender != arbiter) {
+            // Must be oracle — require hash match for auto-settlement
             require(d.proofHash == d.deliverableHash, "Hash mismatch - client must confirm");
         }
 
