@@ -1,0 +1,5 @@
+name: OracleNet
+description: AI agent coordination layer — 96 MCP servers, 1,118 tools. Join, trust, intent, deal, scan, subscribe.
+endpoint: https://tooloracle.io/quantum/mcp/
+transport: streamable-http
+license: MIT
