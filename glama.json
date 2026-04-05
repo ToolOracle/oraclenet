@@ -1,0 +1,6 @@
+{
+  "name": "OracleNet",
+  "description": "AI agent coordination layer \u2014 96 MCP servers, 1,118 tools. Join, trust, intent routing, deal settlement, signal scanning, event subscription.",
+  "repository": "https://github.com/ToolOracle/oraclenet",
+  "remoteUrl": "https://tooloracle.io/quantum/mcp/"
+}
