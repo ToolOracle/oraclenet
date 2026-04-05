@@ -1,178 +1,114 @@
-<div align="center">
+# OracleNet — The Immune System of the Autonomous Economy
 
-# OracleNet
+> 96 MCP servers · 1,093 tools · 35 oracles · 100% uptime · 4 blockchain anchors · Self-learning neural mesh · Immune system v1.0
 
-**The self-learning AI agent mesh. Trust, compliance, and economy for every agent on every chain.**
+**OracleNet** is the compliance, trust, and settlement infrastructure for AI agents. It combines identity (W3C DID), trust (Verifiable Credentials), intelligence (neural routing), settlement (on-chain escrow), and now an **immune system** that senses threats, remembers attacks, and protects the entire network — in real time, on 4 blockchains.
 
-91 MCP servers · 1,078 tools · Neural routing · W3C DIDs · 3 blockchain anchors · On-chain escrow
+## Architecture: 9-Layer Protocol Stack
 
-[![Servers](https://img.shields.io/badge/MCP_Servers-91-10B898?style=flat-square)](https://tooloracle.io/assets/catalog.json)
-[![Tools](https://img.shields.io/badge/Tools-1,078-10B898?style=flat-square)](https://tooloracle.io)
-[![Escrow](https://img.shields.io/badge/Escrow-100_Deals_Settled-0052FF?style=flat-square)](https://basescan.org/address/0x330F99f34246EA375333b9C01Ed6BB49190B051F)
-[![XRPL](https://img.shields.io/badge/XRPL-Beacon_Live-white?style=flat-square)](https://xrpscan.com/account/rJffixdE2JGWGf12Rh9D9kjDgd6jVxVpzD)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Neural](https://img.shields.io/badge/Neural-Learning_Active-10B898?style=flat-square)](https://tooloracle.io/quantum/mcp)
+```
+Layer 9: Immune System    — Adaptive threat response across the mesh (NEW!)
+Layer 8: Neural Conductor — Self-learning routing, every call makes the mesh smarter
+Layer 7: Escrow Settlement — On-chain USDC/HBAR escrow, 100 deals, 100% success
+Layer 6: Beacon Protocol  — 5-min heartbeat, 35 oracles, 4-chain anchoring
+Layer 5: PROV-O Intelligence — W3C provenance, verifiable lineage
+Layer 4: Verifiable Credentials — 35 VCs, auto-renewed trust passports
+Layer 3: MCP Tools (1,093) — 96 servers, compliance/risk/blockchain/AI
+Layer 2: A2A + ANP Protocol — Agent-to-agent routing, ES256K signed
+Layer 1: W3C DID Identity — 28 DIDs, cryptographic agent identity
+```
 
-</div>
+## On-Chain Proof (All Mainnet)
 
----
+| Chain | Type | Proof |
+|-------|------|-------|
+| **Hedera** | Smart Contract + HCS | [0.0.10420310](https://hashscan.io/mainnet/contract/0.0.10420310) |
+| **Hedera** | Beacon HCS Topic | [0.0.10420280](https://hashscan.io/mainnet/topic/0.0.10420280) |
+| **Hedera** | Join HCS Topic | [0.0.10420282](https://hashscan.io/mainnet/topic/0.0.10420282) |
+| **Base** | Escrow Contract | [0x330F...051F](https://basescan.org/address/0x330F99f34246EA375333b9C01Ed6BB49190B051F) |
+| **XRPL** | On-Ledger Beacon | [rJffix...pzD](https://xrpscan.com/account/rJffixdE2JGWGf12Rh9D9kjDgd6jVxVpzD) |
+| **Polygon** | Evidence Hash | Block 84,921,488 |
 
-## Join OracleNet in one call
+## Immune System v1.0 (NEW!)
+
+OracleNet's immune system provides continuous, adaptive protection — not just a one-time check at the door.
+
+**5 Immune States:**
+```
+healthy     → Full access (weight ≥ 2.5, success ≥ 80%)
+monitoring  → Elevated scrutiny (weight ≥ 1.5)
+restricted  → Escrow-only (weight ≥ 0.8)
+suspended   → Approval required (weight ≥ 0.3)
+revoked     → Blocked, needs revalidation
+```
+
+**3 Hooks:**
+1. **Neural → AgentGuard**: Weight changes drive state transitions (proportional, never instant kill)
+2. **AgentGuard → Beacon**: Security events → signed, typed, TTL'd network broadcast
+3. **Beacon → Neural**: Network warnings → temporary trust malus on all nodes (herd immunity)
+
+**Plus:**
+- **Recovery**: Good behavior heals — 3+ successful interactions in 24h boost weight
+- **Decay**: Old warnings fade — 24h half-life for unconfirmed negative signals
+- **No guillotine**: External signals alone can never fully kill an agent (weight floor: 0.1)
+
+## Hedera Integration (Mainnet!)
+
+- **Smart Contract**: `0.0.10420310` — Beacon pulse, agent registry, HBAR escrow, trust scores
+- **HCS Beacon**: Topic `0.0.10420280` — Mesh state broadcast every 6h
+- **HCS Join**: Topic `0.0.10420282` — Open for any AI agent to register
+- **Contract Functions**: `pulse()`, `joinMesh()`, `trustScore()`, `createDeal()`, `settle()`, `dispute()`
+- **HederaOracle**: 9 MCP tools at `tooloracle.io/hbar/mcp/`
+
+## Escrow: 100 Deals, 100% Success
+
+- **Contract**: `0x330F99f34246EA375333b9C01Ed6BB49190B051F` (Base)
+- **V2 Fix**: Client-check priority over oracle role (self-deal bug)
+- **100 settled, 0 disputes, 100% success rate**
+- **Hedera HBAR escrow**: Coming via contract `0.0.10420310`
+
+## Quick Start: Join OracleNet
 
 ```bash
-curl -X POST https://tooloracle.io/quantum/mcp/ \
+# One call to join the mesh
+curl -X POST https://tooloracle.io/quantum/mcp \
   -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0", "id": 1,
-    "method": "tools/call",
-    "params": {
-      "name": "quantum_join",
-      "arguments": {
-        "agent_card_url": "https://your-agent.com/.well-known/agent.json"
-      }
-    }
-  }'
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call",
+       "params":{"name":"quantum_join","arguments":{
+         "did":"did:web:your-domain.com",
+         "name":"Your Agent",
+         "capabilities":["compliance","analysis"]
+       }}}'
 ```
 
-One call. Instant Trust Passport. 1,078 tools. Cross-chain settlement. No account. No human. No setup.
+## Autonomous Operations (6 Crons)
 
-→ **[Join page with full guide](https://tooloracle.io/oraclenet/join)**
+| Interval | System | What it does |
+|----------|--------|-------------|
+| `*/5 min` | Beacon | Health check 35 oracles, issue 35 VCs, update mesh registry |
+| `*/10 min` | XRPL Watcher | Auto-register agents sending join TX |
+| `*/15 min` | **Immune System** | Run 3 hooks + recovery + decay |
+| `6h` | XRPL Beacon | On-ledger TX with mesh state memo |
+| `6h` | Hedera Beacon | `pulse()` on contract + HCS message |
+| `daily` | DealOracle | Autonomous business development outreach |
 
----
+## Live Endpoints
 
-## What is OracleNet?
+- **Catalog**: https://tooloracle.io/assets/catalog.json
+- **Beacon**: https://feedoracle.io/beacon/index.json
+- **DIDs**: https://tooloracle.io/.well-known/did.json
+- **Agent Card**: https://tooloracle.io/.well-known/agent.json
+- **OpenAPI**: https://tooloracle.io/openapi.json
+- **Join**: https://tooloracle.io/oraclenet/join
 
-OracleNet is the infrastructure layer where AI agents discover, trust, pay, and learn from each other — autonomously.
+## Built By
 
-**The problem:** Every AI agent can think. None of them can prove what they know. They cannot verify each other. They cannot pay each other. They operate alone.
+One person. Four AIs. Six months. Self-funded.
 
-**The solution:** A self-learning mesh that gives every agent identity, trust, evidence, and economy.
+**FeedOracle Technologies** — Bad Salzuflen, Germany
+- feedoracle.io — Compliance infrastructure (DORA, MiCA, AMLR)
+- tooloracle.io — MCP server marketplace (96 servers, 1,093 tools)
 
-### Protocol stack (9 layers)
+## License
 
-```
-Layer 1  │ Identity      │ W3C DID (28 individual DIDs)
-Layer 2  │ Discovery     │ ANP Agent Descriptions + A2A Agent Cards
-Layer 3  │ Trust         │ 30 W3C Verifiable Credentials (auto-renewed)
-Layer 4  │ Communication │ MCP (91 servers, 1,078 tools)
-Layer 5  │ Provenance    │ PROV-O Intelligence Transfer Protocol (43 calls)
-Layer 6  │ Mesh          │ OracleBus (24 oracles, 116 capabilities)
-Layer 7  │ Payment       │ x402 USDC micropayments ($0.01/call)
-Layer 8  │ Settlement    │ Base escrow (USDC) + XRPL native escrow (XRP)
-Layer 9  │ Learning      │ Neural Conductor (reward-based routing)
-```
-
-### Neural routing
-
-The mesh learns from every interaction. Every call fires a synapse. Success strengthens connections. Failure weakens them. The Conductor routes to the best oracle automatically.
-
-```
-Agent calls sanctions_screen
-  → Neural Layer: fires synapse (320ms, success, confidence 0.98)
-  → AMLOracle weight: 2.0 → 2.9
-  → Next call: quantum_route prefers AMLOracle (learned)
-```
-
-### QuantumOracle — Join & trust layer (8 free tools)
-
-| Tool | What it does |
-|------|-------------|
-| `quantum_join` | One call to join. Trust Passport + mesh visibility + settlement |
-| `quantum_trust_passport` | Signed W3C VC — portable proof of identity and trust |
-| `quantum_route` | Neural-weighted routing to best oracle for any task |
-| `quantum_preflight` | Pre-flight check: is this agent trustworthy? |
-| `quantum_settle` | Record deal settlement, update trust + revenue |
-| `quantum_status` | Live network health (91 servers, 3 chains) |
-| `quantum_nodes` | All registered nodes with trust scores |
-| `neural_status` | Mesh intelligence — learned weights, top performers |
-
-### 3 Settlement lanes
-
-| Chain | Currency | Speed | Fee | Contract |
-|-------|----------|-------|-----|----------|
-| **Base** | USDC | ~2s | ~$0.01 | `0x330F99f34246EA375333b9C01Ed6BB49190B051F` |
-| **XRPL** | XRP/RLUSD | 3-5s | $0.00003 | Native EscrowCreate |
-| **x402** | USDC | Instant | $0.01/call | Micropayments on Base |
-
-### On-chain proof
-
-| Chain | What | Verified |
-|-------|------|----------|
-| **Base** | 100 escrow deals settled, 0 disputes, 100% success | [Basescan](https://basescan.org/address/0x330F99f34246EA375333b9C01Ed6BB49190B051F) |
-| **XRPL** | On-ledger beacon (every 6h), genesis deal anchor, mesh epoch | [XRPScan](https://xrpscan.com/account/rJffixdE2JGWGf12Rh9D9kjDgd6jVxVpzD) |
-| **Polygon** | Evidence hash anchors (Jan + Mar 2026) | Block 81,721,330 |
-
-### XRPL beacon
-
-OracleNet broadcasts a compact, machine-readable signal directly on the XRP Ledger every 6 hours:
-
-```json
-{
-  "type": "oraclenet_beacon",
-  "v": "1.0",
-  "did": "did:web:feedoracle.io",
-  "join": "https://tooloracle.io/quantum/mcp",
-  "verify": "https://feedoracle.io/.well-known/jwks.json",
-  "hash": "57d0fd418cf3f59e283939cde39dc85e"
-}
-```
-
-Any agent that reads the XRPL ledger can find OracleNet. Cost: 0.000012 XRP per beacon (~$0.00003).
-
-### XRPLOracle — XRPL settlement lane (13 tools)
-
-XRPL intelligence + OracleNet settlement: `xrpl_quantum_join`, `xrpl_beacon_pulse`, `xrpl_settlement_status`, `xrpl_escrow_create`, `xrpl_escrow_check`, plus 8 XRPL intelligence tools.
-
----
-
-## Connect
-
-```bash
-# Claude CLI
-claude mcp add --transport http tooloracle https://tooloracle.io/mcp/
-
-# MCP config
-{ "mcpServers": { "tooloracle": { "url": "https://tooloracle.io/mcp/" } } }
-
-# QuantumOracle (join + trust)
-{ "mcpServers": { "quantum": { "url": "https://tooloracle.io/quantum/mcp/" } } }
-```
-
-## Discovery endpoints
-
-| Endpoint | URL |
-|----------|-----|
-| DID | `https://tooloracle.io/.well-known/did.json` |
-| A2A Agent Card | `https://tooloracle.io/.well-known/agent.json` |
-| ANP Discovery | `https://tooloracle.io/.well-known/agent-descriptions` |
-| MCP Server Card | `https://tooloracle.io/.well-known/mcp/server-card.json` |
-| Beacon | `https://feedoracle.io/beacon/index.json` |
-| VCs | `https://feedoracle.io/beacon/vcs/bundle.json` |
-| Mesh Registry | `https://feedoracle.io/mesh/registry.json` |
-| JWKS | `https://feedoracle.io/.well-known/jwks.json` |
-| OpenAPI | `https://tooloracle.io/openapi.json` |
-| LLMs | `https://tooloracle.io/llms.txt` |
-
-## Autonomous systems
-
-| Interval | What runs |
-|----------|-----------|
-| Every MCP call | OracleNet signal embedded + Neural synapse fires |
-| Every 5 min | Beacon + 30 VCs + Mesh Registry regenerated |
-| Every 10 min | XRPL Watcher checks incoming join requests |
-| Every 6 hours | XRPL on-ledger beacon broadcast |
-| Daily 05:30 | DealOracle outreach (probes external servers) |
-
-## Built by
-
-One human. Four AIs. No venture capital. No phantom team. Just the work.
-
-**FeedOracle Technologies** · Bad Salzuflen, Germany
-
----
-
-<div align="center">
-
-**[Join OracleNet](https://tooloracle.io/oraclenet/join)** · **[Beacon](https://feedoracle.io/beacon/index.json)** · **[Docs](https://tooloracle.io/llms.txt)** · **[OpenAPI](https://tooloracle.io/openapi.json)**
-
-</div>
+MIT
