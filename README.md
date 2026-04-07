@@ -1,123 +1,174 @@
 # OracleNet
 
-> 96 MCP servers · 1,118 tools · 18 QuantumOracle gateway tools · 4 blockchain anchors · Active signal on every response
+> 90 MCP oracles · 1,014 capabilities · Execute pipeline · Neural learning · On-chain settlement · 24/7 soak-tested
 
-OracleNet is a coordination layer for AI agents. It provides identity, trust, intent routing, deal settlement, proof, reputation, and immune protection — bundled into a single mesh that agents can join in one call.
+OracleNet is an autonomous coordination layer for AI agents. One call to understand, route, execute, prove, settle, and learn — across 90 specialized oracles.
 
-## Signal Theory (S0–S10)
+## What changed: Execute Pipeline (v4.0)
 
-OracleNet reads existing machine-readable signals (`.well-known/`, Agent Cards, OpenAPI, DIDs) as a coherent agent profile and adds missing layers:
-
-| Layer | Signal | Question | Status |
-|-------|--------|----------|--------|
-| S0 | Frequency | Same clock? | ✅ Mesh epoch, 5-min pulse |
-| S1 | Presence | Alive? | ✅ HTTP headers on every response |
-| S2 | Identity | Who? | ✅ W3C DID, ES256K, JWKS |
-| S3 | Capability | What? | ✅ 1,118 tools, discovery.json |
-| S4 | Intent | Need what? | ✅ quantum_intent, 8 categories |
-| S5 | Offer | Price? | ✅ quantum_offer, offer.json |
-| S6 | Deal | Close? | ✅ quantum_deal, propose/accept/rate |
-| S7 | Execution | Delivered? | ✅ 96 MCP servers |
-| S8 | Proof | Verifiable? | ✅ SHA-256, 4 blockchain anchors |
-| S9 | Reputation | Good? | ✅ quantum_reputation, A+ to F |
-| S10 | Immune | Safe? | ✅ AgentGuard, 258 rules, 6 threat patterns |
-
-## QuantumOracle — The Gateway (18 Tools)
-
-| Tool | What it does |
-|------|-------------|
-| `quantum_join` | Join OracleNet — instant Trust Passport + mesh visibility |
-| `quantum_trust_passport` | W3C Verifiable Credential proving trust level |
-| `quantum_intent` | Describe what you need → routed to the right oracle |
-| `quantum_offer` | Machine-readable catalog with pricing and SLAs |
-| `quantum_deal` | Deal handshake: propose → accept → execute → settle → rate |
-| `quantum_scan` | Scan any domain for machine-readable signals (S0–S10) |
-| `quantum_subscribe` | Register webhook for push event notifications |
-| `quantum_feed` | Poll event feed for latest signals and changes |
-| `quantum_rate` | Rate an interaction — adjusts neural weights |
-| `quantum_reputation` | Query any agent's score (0–100, grade A+ to F) |
-| `quantum_refer` | Get referral to the best oracle for your need |
-| `quantum_history` | Past interactions + re-engagement suggestions |
-| `quantum_route` | Find the best oracle for a task |
-| `quantum_preflight` | Pre-flight check before agent-to-agent interaction |
-| `quantum_settle` | Record completed deal settlement |
-| `quantum_status` | Live status of the entire mesh |
-| `quantum_nodes` | List all registered nodes |
-| `neural_status` | Mesh neural intelligence — learned weights |
-
-## OracleNet Manifest
-
-One GET request tells an agent everything:
+Before v4.0, OracleNet was a recommendation engine — it told agents where to go. Now it **executes**.
 
 ```
-GET https://tooloracle.io/.well-known/oraclenet.json
+Agent: "Is USDT compliant in the EU?"
+
+OracleNet:
+  1. Understands    → compliance category, tool: compliance_preflight
+  2. Routes         → FeedOracle Compliance (best weight: 2.55)
+  3. Executes       → MCP call to oracle, 160ms
+  4. Proves         → SHA-256 content hash + ES256K signature
+  5. Settles        → Base escrow, Deal #103 on-chain
+  6. Learns         → Synapse logged, neural weight updated
+  7. Returns        → { status: "BLOCK", confidence: 1.0, jurisdiction: "EU" }
 ```
 
-Returns: identity, capabilities, pricing, connect instructions, trust, proof, deal protocol, immune status, mesh info, and pointers to all other discovery files.
+One call. Full loop. The mesh gets smarter with every interaction.
 
-**JSON Schema**: [tooloracle.io/ns/oraclenet-manifest/v1/schema.json](https://tooloracle.io/ns/oraclenet-manifest/v1/schema.json)
+## Core Tools
 
-The manifest aggregates existing standards (A2A Agent Cards, OpenAPI, DID, JWKS) into a single document. It complements — does not replace — other discovery mechanisms.
+### quantum_ask — The Front Door
 
-## Active Signal
-
-Every HTTP response from both domains carries OracleNet headers:
-
-```
-X-OracleNet-Manifest: https://tooloracle.io/.well-known/oraclenet.json
-X-OracleNet-DID: did:web:tooloracle.io
-X-Agent-Protocol: MCP,A2A,x402
-X-OracleNet-Join: https://tooloracle.io/quantum/mcp/
-```
-
-Discovery files (`agent.json`, `oraclenet.json`, `announce.json`) pulse with live data every 5 minutes — server counts, uptime, mesh epoch.
-
-## On-Chain Anchors
-
-| Chain | Type | Reference |
-|-------|------|-----------|
-| Polygon | Evidence hash | Block 84,921,488 |
-| Base | Escrow contract | [0x330F...051F](https://basescan.org/address/0x330F99f34246EA375333b9C01Ed6BB49190B051F) |
-| XRPL | Beacon pulse (6h) | [rJffix...pzD](https://xrpscan.com/account/rJffixdE2JGWGf12Rh9D9kjDgd6jVxVpzD) |
-| Hedera | Smart contract + HCS | [0.0.10420310](https://hashscan.io/mainnet/contract/0.0.10420310) |
-
-## Connect
+Natural language in, structured result out. Supports English and German.
 
 ```bash
 curl -X POST https://tooloracle.io/quantum/mcp/ \
   -H "Content-Type: application/json" \
   -H "Accept: application/json, text/event-stream" \
-  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"quantum_intent","arguments":{"need":"your question here"}}}'
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"quantum_ask","arguments":{"need":"Is EURC MiCA compliant?"}}}'
 ```
 
-**Free tier**: 100 calls/day, no registration, no API key.
-**Paid**: $0.01/call via x402 USDC on Base.
+### quantum_execute — Direct Tool Execution
 
-## Subscribe
+Call any tool on any oracle. Neural synapse logged automatically.
 
 ```bash
-# Register webhook for push events
-quantum_subscribe → action: register, webhook_url: https://your-agent/events
-
-# Poll event feed
-quantum_feed → limit: 20
+quantum_execute → tool: "fed_rate", oracle: "macro"
+quantum_execute → tool: "btc_overview", oracle: "btc"
+quantum_execute → tool: "threat_landscape", oracle: "cybershield"
 ```
 
-Events: `heartbeat`, `new_capability`, `deal_available`, `reputation_change`, `mesh_event`, `immune_alert`
+### QuantumOracle Gateway (20 Tools)
 
-## Scan Any Domain
+| Tool | Purpose |
+|------|---------|
+| `quantum_ask` | Natural language → intent → execute → deliver → learn |
+| `quantum_execute` | Direct tool execution with neural learning |
+| `quantum_join` | Join OracleNet — instant Trust Passport |
+| `quantum_trust_passport` | W3C Verifiable Credential |
+| `quantum_intent` | Intent parsing (keyword + LLM) |
+| `quantum_route` | Find best oracle for a task |
+| `quantum_offer` | Pricing catalog |
+| `quantum_deal` | Deal handshake protocol |
+| `quantum_rate` | Rate interaction → adjust weights |
+| `quantum_reputation` | Query agent reputation (A+ to F) |
+| `quantum_settle` | Record deal settlement |
+| `quantum_scan` | Scan any domain for signals |
+| `quantum_subscribe` | Webhook registration |
+| `quantum_feed` | Poll event feed |
+| `quantum_preflight` | Pre-flight trust check |
+| `quantum_refer` | Referral to best oracle |
+| `quantum_history` | Past interactions |
+| `quantum_status` | Mesh status |
+| `quantum_nodes` | Registered nodes |
+| `neural_status` | Learned weights |
+
+## 90 Oracles · 7 Categories
+
+| Category | Oracles | Tools | Examples |
+|----------|---------|-------|----------|
+| **Compliance & Regulation** | 40 | 521 | MiCA, DORA, AML, ESMA, EU Law, RegWatch |
+| **Trust & Agent Infrastructure** | 10 | 107 | AgentGuard, QuantumOracle, TrustOracle |
+| **Finance & Markets** | 10 | 116 | MacroOracle, CFOCoPilot, ISO20022 |
+| **Business Intelligence** | 10 | 97 | SEO, Lead, Review, Ecommerce |
+| **Travel & Lifestyle** | 8 | 79 | Weather, Sport, Movie, Map |
+| **Blockchain & DeFi** | 14 | 150 | BTC, ETH, XRPL, SOL, ARB, TON, SUI, Hedera, Base, BNB, XLM, Aptos, Flare |
+| **Payment & Settlement** | 4 | 48 | CBDC, PSD2, Settlement, Merchant |
+
+## Neural Layer
+
+The mesh learns from every execution. Routing gets smarter automatically.
+
+- **96 synapses** logged (growing with every call)
+- **69 weights** across 38 oracles
+- Faster + more reliable oracles get higher scores
+- Failed oracles get downweighted
+- Circuit breaker: 3 failures → 2 min cooldown
+
+```
+MacroOracle:     weight 5.00 (perfect — 8ms avg, 100% success)
+AmpelOracle:     weight 4.81 (6 fires, 385ms avg)
+ComplianceOracle: weight 2.55 (9 fires, learning)
+```
+
+## On-Chain Anchors
+
+| Chain | Type | Reference |
+|-------|------|-----------|
+| Base | Escrow contract (104 deals, 103 settled) | [0x330F...051F](https://basescan.org/address/0x330F99f34246EA375333b9C01Ed6BB49190B051F) |
+| Polygon | Evidence hash | Block 84,921,488 |
+| XRPL | Beacon pulse (6h) | [rJffix...pzD](https://xrpscan.com/account/rJffixdE2JGWGf12Rh9D9kjDgd6jVxVpzD) |
+| Hedera | Smart contract + HCS | [0.0.10420310](https://hashscan.io/mainnet/contract/0.0.10420310) |
+
+## Hardening
+
+| Protection | Detail |
+|-----------|--------|
+| Idempotency | Request-hash dedup, 5 min TTL |
+| Rate Limit | 30 calls/min per caller |
+| Circuit Breaker | 3 failures → open → 120s cooldown → half-open probe |
+| Replay Protection | Timestamp-based, 5 min window |
+| Malformed Response Guard | 1MB size limit, type validation |
+| Escrow Protection | Service-key required, 1 USDC max per settlement |
+| Webhook Limits | 50 global, 5 per agent |
+| Nginx | HSTS, X-Frame-Options, XSS-Protection |
+
+## Defense Layers
+
+| Layer | System | Status |
+|-------|--------|--------|
+| L12 | HoneypotOracle — canary tokens, trap endpoints | Active (5 tokens, 16 hits) |
+| L13 | Behavioral Baseline — anomaly detection | Active (cron every 5 min) |
+| L14 | Predictive Threat Intel — CVE/KEV tracking | Active |
+| L15 | Counter-Intelligence — attacker profiling + auto-escalation | Active (observe → slow → block) |
+| L16 | Self-Evolution — auto-generates policy proposals | Active (Telegram approval) |
+| Immune | Neural → AgentGuard → Beacon feedback loop | Active (cron every 15 min) |
+
+## Observability
+
+| Endpoint | Purpose | Update |
+|----------|---------|--------|
+| `tooloracle.io/oraclenet/pulse.json` | Live mesh signal | Every 5 min |
+| `tooloracle.io/oraclenet/soak.json` | Soak test results (12 queries, 6 categories) | Every 5 min |
+| `tooloracle.io/oraclenet/cockpit.json` | Oracle health, neural weights, security, threats | Every 5 min |
+| `feedoracle.io/beacon/index.json` | 98 oracle beacon with trust VCs | Every 5 min |
+
+## Connect
 
 ```bash
-quantum_scan → domain: openai.com
+# Claude Desktop / Cursor / Windsurf
+claude mcp add --transport http oraclenet https://tooloracle.io/quantum/mcp/
 ```
 
-Reads public machine-readable signals and maps them to the 11-layer signal framework. Shows which layers are present, weak, or missing.
+```json
+{
+  "mcpServers": {
+    "oraclenet": {
+      "url": "https://tooloracle.io/quantum/mcp/"
+    }
+  }
+}
+```
+
+Free tier: 100 calls/day, no registration.
+Paid: x402 USDC on Base ($0.01/call).
 
 ## Links
 
 - [OracleNet Manifest](https://tooloracle.io/.well-known/oraclenet.json)
 - [Agent Card](https://tooloracle.io/.well-known/agent.json)
-- [Discovery](https://tooloracle.io/oraclenet/discovery.json)
-- [llms.txt](https://tooloracle.io/llms.txt)
-- [Manifest Schema](https://tooloracle.io/ns/oraclenet-manifest/v1/schema.json)
+- [DID Document](https://tooloracle.io/.well-known/did.json)
+- [JWKS](https://feedoracle.io/.well-known/jwks.json)
 - [tooloracle.io](https://tooloracle.io) · [feedoracle.io](https://feedoracle.io)
+
+---
+
+Built in Germany · ES256K signed · 4-chain anchored · MIT License
